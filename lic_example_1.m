@@ -5,6 +5,7 @@ n = 201;    % size of the image
 % v = perform_vf_normalization(v);
 
 nn  = 201;
+mm = 401;
 xx = linspace(0,10,nn);
 vv = zeros(nn,nn,2);
 v = zeros(size(vv));
@@ -32,19 +33,18 @@ options.dt = 1.5; % time steping
 options.flow_correction = 1;
 options.niter_lic = 2; % several iterations gives better results
 % iterated lic
-Mlist = {};
+options.M0 = M;
 %for i=1:4
 %    options.M0 = M;
 %    Mlist{end+1} = perform_lic(v, i, options);
 %end
 out_image = perform_lic(v,5,options);
 out_cut = out_image(1:20,1:20);
-out_rot = imrotate(out_image,90);
 
 % display
 figure(1)
 clf; %imageplot(Mlist,'',2,2);
-imshow(out_rot)
+imshow(out_image)
 axis equal
 
 
