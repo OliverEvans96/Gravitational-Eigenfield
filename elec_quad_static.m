@@ -150,4 +150,5 @@ img = lic_out.*reshape(cmap(colors,:),[size(lic_out) 3]);
 % Plot final colored image
 %imshow(img)
 %title('Static Electric Quadrupole Electric Field')
-imwrite,'elec_quad_static.png')
+imwrite(img,'elec_quad_static.png')
+

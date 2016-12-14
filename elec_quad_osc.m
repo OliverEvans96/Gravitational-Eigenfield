@@ -3,6 +3,7 @@
 % nxm Cartesian grid
 nn = 1000;
 mm = 1000;
+
 start = 1;
 xg = linspace(-start,start,nn);
 yg = linspace(-start,start,mm);
@@ -14,24 +15,17 @@ yg = linspace(-start,start,mm);
 [tt,rr] = cart2pol(xx,yy);
 
 % Parameters
-%G = 1;
 Q = 1e-3;
-c = 3e8;
 w = 2*pi;
 k = 1e1;
 
+% Eigenvalue matrix
+% Dimensions: ii grid, jj grid, eval # (pos,neg)
+eval_mat = zeros(nn,mm);
 
-% Gravitoelectric Tensor
-% Err Ert Erp
-% Etr Ett Etp
-% Epr Ept Epp
-
-% Define components
-%Err = -12*G*Q./rr.^5 .* (3*cos(tt).^2 - 1);
-%Ert = -24*G*Q./rr.^5 .* sin(tt)*cos(tt);
-%Ett = 3*G*Q./rr.^5 .* (6*cos(tt).^2 - sin(tt).^2 - 2);
-% Epp = 3*G*Q./rr.^5 .* (5*cos(tt).^2 - 1);
-
+% Eigenvector matrix
+% Dimensions: ii grid, jj grid, comp # (x,y), evec # (pos,neg)
+evec_mat = zeros(nn,mm,2);
 
 % Create noise canvas
 M = randn([nn,mm]);
@@ -144,3 +138,4 @@ for t=0:dt:tmax
     
     tstep = tstep + 1;
 end
+

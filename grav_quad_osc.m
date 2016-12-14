@@ -1,8 +1,8 @@
 %% Calculate eigenfield for gravitostatic tensor for gravitational quadrupole
 
 % nxm Cartesian grid
-nn = 500;
-mm = 500;
+nn = 1000;
+mm = 1000;
 start = 1;
 xg = linspace(-start,start,nn);
 yg = linspace(-start,start,mm);
@@ -131,10 +131,10 @@ for t=0:dt:tmax
         options.dt = 1.5; % time steping
         % size of the features
         options.flow_correction = 1;
-        options.isoriented=1;
-        options.niter_lic = 3; % several iterations gives better results
+        %options.isoriented=1;
+        options.niter_lic = 2; % several iterations gives better results
         options.M0 = M;
-        L = 20; % "Smear length"
+        L = 30; % "Smear length"
 
         % Perform LIC
         lic_out = perform_lic(vv, L, options);
@@ -155,3 +155,4 @@ for t=0:dt:tmax
     
     tstep = tstep + 1;
 end
+    

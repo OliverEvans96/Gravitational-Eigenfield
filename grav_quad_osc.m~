@@ -44,10 +44,14 @@ for ii=1:nn
         t1 = tt(ii,jj);
         
         % Potential derivatives for GE tensor
-        Err = -12*G*Q./r1.^5 .* (3*cos(t1).^2 - 1);
-        Ert = -24*G*Q./r1.^5 .* sin(t1)*cos(t1);
-        Ett = 3*G*Q./r1.^5 .* (6*cos(t1).^2 - sin(t1).^2 - 2);
-        
+        %Err = -12*G*Q./r1.^5 .* (3*cos(t1).^2 - 1);
+        %Ert = -24*G*Q./r1.^5 .* sin(t1)*cos(t1);
+        %Ett = 3*G*Q./r1.^5 .* (6*cos(t1).^2 - sin(t1).^2 - 2);
+
+        Err = -4*G*Q*k^2/r^3 * ((-1 + 3/(k*r)^2)*cos(k*r-w*t) + 3*sin(k*r-w*t)/(k*r)) * (3*cos(th)*
+        Ett = -G*Q*k^2*(-(-2*k*r + 3/(k*r))*sin(k*r - omega*t) + (-k^2*r^2 + 3 - 3/(k^2*r^2))*cos(k*r - omega*t))*sin(theta)^2/r^3;
+        Epp = 2*G*Q*k^2*((-1 + 3/(k^2*r^2))*cos(k*r - omega*t) + 3*sin(k*r - omega*t)/(k*r))*(3*cos(theta)^2 - 1)/r^3;
+
         % Equivalent 2x2 tensor
 %         GE = [Err(ii,jj), Ert(ii,jj); ...
 %               Ert(ii,jj), Ett(ii,jj)];
