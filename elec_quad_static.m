@@ -80,7 +80,11 @@ for ii=1:nn
         eval = norm(evecs_cart);
         
         % Save "evals" (magnitude) and "evecs" (vector)
+<<<<<<< HEAD
         eval_mat(ii,jj) = eval;
+=======
+        eval_mat(ii,jj) = evals;
+>>>>>>> grad_lab
         evec_mat(ii,jj,:) = evecs_cart(:);
         
 %         % Save to appropriate matrices
@@ -150,5 +154,9 @@ img = lic_out.*reshape(cmap(colors,:),[size(lic_out) 3]);
 % Plot final colored image
 %imshow(img)
 %title('Static Electric Quadrupole Electric Field')
+<<<<<<< HEAD
 imwrite(img,'elec_quad_static.png')
 
+=======
+imwrite,'elec_quad_static.png')
+>>>>>>> grad_lab

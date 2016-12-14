@@ -5428,6 +5428,7 @@ switch lower(cmapName(1:3))
 end
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 end
 =======
 <<<<<<< HEAD
@@ -5436,3 +5437,6 @@ end
 end
 >>>>>>> 70b8555ca4281df0451424ad1e1bfd0aa1ee8558
 >>>>>>> amrl_newton
+=======
+end
+>>>>>>> grad_lab

@@ -65,6 +65,7 @@ for t=0:dt:tmax
                 - (k*r-6/(k*r))*sin(k*r-w*t)) * sin(th)*cos(th);
             Ett = -G*Q*k^2*(-(-2*k*r + 3/(k*r))*sin(k*r - w*t) ...
                 + (-k^2*r^2 + 3 - 3/(k^2*r^2))*cos(k*r - w*t))*sin(th)^2/r^3;
+
             % Epp = 2*G*Q*k^2*((-1 + 3/(k^2*r^2))*cos(k*r - w*t) + 3*sin(k*r - w*t)/(k*r))*(3*cos(th)^2 - 1)/r^3;
 
             % Equivalent 2x2 tensor
@@ -155,4 +156,4 @@ for t=0:dt:tmax
     
     tstep = tstep + 1;
 end
-    
+
