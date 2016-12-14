@@ -1,12 +1,8 @@
-<<<<<<< HEAD
-drma%% Calculate eigenfield for gravitostatic tensor for gravitational quadrupole
-=======
 %% Calculate eigenfield for gravitostatic tensor for gravitational quadrupole
->>>>>>> 70b8555ca4281df0451424ad1e1bfd0aa1ee8558
 
 % nxm Cartesian grid
-nn = 1000;
-mm = 1000;
+nn = 500;
+mm = 500;
 start = 1;
 xg = linspace(-start,start,nn);
 yg = linspace(-start,start,mm);
@@ -72,24 +68,21 @@ for ii=1:nn
 %         evals = diag(evals);
 %         
         % Convert eigenvectors back to Cartesian
-        evecs_cart = zeros([2,1]);
+        %evecs_cart = zeros([2,2]);
         
         % Vector change of coordinates sph -> cart given by
         % v_cart = (v_r*sin(th)+v_th*cos(th))*x_hat
         %        + (v_r*cos(th)-v_th*sin(th))*y_hat
         % where v_r = evecs(1,:) and v_th = evecs(2,:)
-        evecs_cart(1) = evecs(1)*sin(t1) + evecs(2)*cos(t1);
-        evecs_cart(2) = evecs(1)*cos(t1) - evecs(2)*sin(t1);
-        
+        evecs_cart = evecs(1)*cos(t1) - evecs(2)*sin(t1);
+        evec_mat(ii,jj,:,1) = evecs_cart(:,1)...
+            .*sign(evecs_cart(1,1))*sign(xx(ii,jj));
         eval = norm(evecs_cart);
         
         % Save "evals" (magnitude) and "evecs" (vector)
-<<<<<<< HEAD
         eval_mat(ii,jj) = eval;
-=======
-        eval_mat(ii,jj) = evals;
->>>>>>> 70b8555ca4281df0451424ad1e1bfd0aa1ee8558
         evec_mat(ii,jj,:) = evecs_cart(:);
+        
         
 %         % Save to appropriate matrices
 %         eval_mat(ii,jj,:) = evals;
@@ -104,22 +97,24 @@ end
 
 %% Plot using quiver
 
-% figure(1)
-% clf
-% skip = 5;
-% x_sec = xx(1:skip:end,1:skip:end);
-% y_sec = yy(1:skip:end,1:skip:end);
-% v_sec = vv(1:skip:end,1:skip:end,:);
-% 
-% quiver(x_sec,y_sec,v_sec(:,:,1),v_sec(:,:,2))
-% xlim([-5,5]);
-% ylim([-5,5]);
+figure(1)
+clf
+skip = 5;
+x_sec = xx(1:skip:end,1:skip:end);
+y_sec = yy(1:skip:end,1:skip:end);
+v_sec = vv(1:skip:end,1:skip:end,:);
+
+quiver(x_sec,y_sec,v_sec(:,:,1),v_sec(:,:,2))
+xlim([-5,5]);
+ylim([-5,5]);
 
 
 %% LIC
 
 % Plot tiles
-titles = {'Static Electric Quadrupole Electric Field'};
+titles = {'Gravitational Quadrupole Tendex Field: Positive Eigenvalue',...
+    'Gravitational Quadrupole Tendex Field: Negative Eigenvalue'};
+labels = {'pos','neg'};
 
 figure(1)
 clf 
@@ -141,9 +136,9 @@ options.dt = 1.5; % time steping
 % size of the features
 options.flow_correction = 1;
 %options.isoriented=1;
-options.niter_lic = 5; % several iterations gives better results
+options.niter_lic = 3; % several iterations gives better results
 options.M0 = M;
-L = 60; % "Smear length"
+L = 30; % "Smear length"
 
 % Perform LIC
 lic_out = perform_lic(vv, L, options);
@@ -156,10 +151,6 @@ colors(colors==0) = 1;
 img = lic_out.*reshape(cmap(colors,:),[size(lic_out) 3]);
 
 % Plot final colored image
-%imshow(img)
-%title('Static Electric Quadrupole Electric Field')
-<<<<<<< HEAD
-imwrite(img,'elec_quad_static.png')
-=======
-imwrite,'elec_quad_static.png')
->>>>>>> 70b8555ca4281df0451424ad1e1bfd0aa1ee8558
+imshow(img)
+title(titles{kk})
+saveas(gcf,sprintf('elec_quad_%s.png',labels{kk}))

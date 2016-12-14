@@ -1,8 +1,13 @@
 %% Calculate eigenfield for gravitostatic tensor for gravitational quadrupole
 
 % nxm Cartesian grid
+<<<<<<< HEAD
 nn = 500;
 mm = 500;
+=======
+nn = 1000;
+mm = 1000;
+>>>>>>> 70b8555ca4281df0451424ad1e1bfd0aa1ee8558
 start = 1;
 xg = linspace(-start,start,nn);
 yg = linspace(-start,start,mm);
@@ -17,10 +22,14 @@ yg = linspace(-start,start,mm);
 G = 1;
 Q = 1;
 k = 1/2;
+<<<<<<< HEAD
 w = 2*pi;
 
 % Create noise canvas
 M = randn([nn,mm]);
+=======
+w = 1;
+>>>>>>> 70b8555ca4281df0451424ad1e1bfd0aa1ee8558
 
 % Eigenvalue matrix
 % Dimensions: ii grid, jj grid, eval # (pos,neg)
@@ -43,9 +52,14 @@ evec_mat = zeros(nn,mm,2,2);
 
 % Loop through time
 nframes = 100;
+<<<<<<< HEAD
 tmax=1;
 dt = tmax/nframes;
 for t=0:dt:tmax
+=======
+dt = 1/nframes;
+for t=0:dt:1
+>>>>>>> 70b8555ca4281df0451424ad1e1bfd0aa1ee8558
     % Loop through x,y grid
     for ii=1:nn
         for jj=1:mm
@@ -58,12 +72,18 @@ for t=0:dt:tmax
             %Ert = -24*G*Q./r.^5 .* sin(th)*cos(th);
             %Ett = 3*G*Q./r.^5 .* (6*cos(th).^2 - sin(th).^2 - 2);
 
+<<<<<<< HEAD
             Err = -4*G*Q*k^2/r^3 * ((-1 + 3/(k*r)^2)*cos(k*r-w*t) ...
                 + 3*sin(k*r-w*t)/(k*r)) * (3*cos(th)^2 - 1);
             Ert = -4*G*Q*k^2/r^3 * ((6/(k*r)^2-3)*cos(k*r-w*t) ...
                 - (k*r-6/(k*r))*sin(k*r-w*t)) * sin(th)*cos(th);
             Ett = -G*Q*k^2*(-(-2*k*r + 3/(k*r))*sin(k*r - w*t) ...
                 + (-k^2*r^2 + 3 - 3/(k^2*r^2))*cos(k*r - w*t))*sin(th)^2/r^3;
+=======
+            Err = -4*G*Q*k^2/r^3 * ((-1 + 3/(k*r)^2)*cos(k*r-w*t) + 3*sin(k*r-w*t)/(k*r)) * (3*cos(th)^2 - 1);
+            Ert = -4*G*Q*k^2/r^3 * ((6/(k*r)^2-3)*cos(k*r-w*t) - (k*r-6/(k*r))*sin(k*r-w*t)) * sin(th)*cos(th);
+            Ett = -G*Q*k^2*(-(-2*k*r + 3/(k*r))*sin(k*r - w*t) + (-k^2*r^2 + 3 - 3/(k^2*r^2))*cos(k*r - w*t))*sin(th)^2/r^3;
+>>>>>>> 70b8555ca4281df0451424ad1e1bfd0aa1ee8558
             % Epp = 2*G*Q*k^2*((-1 + 3/(k^2*r^2))*cos(k*r - w*t) + 3*sin(k*r - w*t)/(k*r))*(3*cos(th)^2 - 1)/r^3;
 
             % Equivalent 2x2 tensor
@@ -105,6 +125,7 @@ for t=0:dt:tmax
         end
         %break
     end
+<<<<<<< HEAD
     
     %%% LIC
 
@@ -151,4 +172,69 @@ for t=0:dt:tmax
         %title(titles{kk})
         imwrite(img,sprintf('grav_quad_osc_%s_%d.png',labels{kk},t))
     end
+=======
+    break
+end
+    
+%% Plot using quiver
+
+% figure(1)
+% clf
+% skip = 5;
+% x_sec = xx(1:skip:end,1:skip:end);
+% y_sec = yy(1:skip:end,1:skip:end);
+% v_sec = vv(1:skip:end,1:skip:end,:);
+% 
+% quiver(x_sec,y_sec,v_sec(:,:,1),v_sec(:,:,2))
+% xlim([-5,5]);
+% ylim([-5,5]);
+
+
+%% LIC
+
+% Plot tiles
+titles = {'Gravitational Quadrupole Tendex Field: Positive Eigenvalue',...
+    'Gravitational Quadrupole Tendex Field: Negative Eigenvalue'};
+labels = {'pos','neg'};
+
+for kk=1:2
+    figure(kk)
+    clf 
+    % Store first eigenvector
+    vv = evec_mat(:,:,:,kk);
+    ll = eval_mat(:,:,kk);
+
+    % Normalize eigenvector array
+    vv = perform_vf_normalization(vv);
+
+    % Create noise canvas
+    M = randn([nn,mm]);
+
+    % parameters for the LIC
+    options.bound = 'sym';
+    options.histogram = 'linear'; % keep contrast fixed
+    options.verb = 1;
+    options.dt = 1.5; % time steping
+    % size of the features
+    options.flow_correction = 1;
+    %options.isoriented=1;
+    options.niter_lic = 5; % several iterations gives better results
+    options.M0 = M;
+    L = 60; % "Smear length"
+
+    % Perform LIC
+    lic_out = perform_lic(vv, L, options);
+
+    % Color output from eigenvalues
+    cmap = cmocean('phase');
+    ll = log(abs(ll));
+    colors = floor((ll(:)-min(ll(:)))/(max(ll(:))-min(ll(:))).*size(cmap,1));
+    colors(colors==0) = 1;
+    img = lic_out.*reshape(cmap(colors,:),[size(lic_out) 3]);
+
+    % Plot final colored image
+    %imshow(img)
+    %title(titles{kk})
+    imwrite(img,sprintf('grav_quad_osc_%s.png',labels{kk}))
+>>>>>>> 70b8555ca4281df0451424ad1e1bfd0aa1ee8558
 end

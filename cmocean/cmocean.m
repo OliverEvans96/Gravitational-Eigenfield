@@ -108,7 +108,11 @@ end
 
 %% Error checks: 
 
+<<<<<<< HEAD
 %assert(isnumeric(ColormapName)==0,'Input error: ColormapName must be a string.') 
+=======
+assert(isnumeric(ColormapName)==0,'Input error: ColormapName must be a string.') 
+>>>>>>> 70b8555ca4281df0451424ad1e1bfd0aa1ee8558
 
 %% Set defaults: 
 
@@ -5427,4 +5431,8 @@ switch lower(cmapName(1:3))
 
 end
 
+<<<<<<< HEAD
 end
+=======
+end
+>>>>>>> 70b8555ca4281df0451424ad1e1bfd0aa1ee8558
