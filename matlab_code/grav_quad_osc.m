@@ -22,10 +22,10 @@ videoname = cell(2);
 videoname_loop = cell(2);
 videopath = cell(2);
 videopath_loop = cell(2);
-video{pp} = cell(2);
+video = cell(2); %% NOT CHANGED ON MASTER %%
 % Open video files
 for pp=1:2
-    imgdir = [resultsdir,sprintf('grav_%s_img/',labels{pp})];
+    imgdir{pp} = [resultsdir,sprintf('grav_%s_img/',labels{pp})];
 	videoname{pp} = sprintf('grav_%s.avi',labels{pp});
 	videoname_loop{pp} = sprintf('grav_%s_loop.avi',labels{pp});
 	videopath{pp} = [videodir,videoname{pp}];
@@ -52,10 +52,10 @@ y_arr = linspace(ymin,ymax,mm);
 [th_mesh,r_mesh] = cart2pol(x_mesh,y_mesh);
 
 % Parameters
-G = 1e-2;
-Q = 1e-2;
-k = 1e1;
-w = 2*pi;
+GG = 1e-2;
+QQ = 1e-2;
+kk = 1e1;
+ww = 2*pi;
 
 % Create noise canvas for LIC
 MM = randn([nn,mm]);
@@ -84,7 +84,7 @@ for t=0:dt:tmax-dt
 			% Loop through positive/negative evals
 				for pp=1:2
 				% Shorthand for r and th for this grid point
-				r = r_mesh(ii,jj);
+				rr = r_mesh(ii,jj);
 				th = th_mesh(ii,jj);
 
 				% Potential derivatives for GE tensor
@@ -92,12 +92,12 @@ for t=0:dt:tmax-dt
 				%Ert = -24*G*Q./r.^5 .* sin(th)*cos(th);
 				%Ett = 3*G*Q./r.^5 .* (6*cos(th).^2 - sin(th).^2 - 2);
 
-				Err = -4*G*Q*k^2/r^3 * ((-1 + 3/(k*r)^2)*cos(k*r-w*t) ...
-					+ 3*sin(k*r-w*t)/(k*r)) * (3*cos(th)^2 - 1);
-				Ert = -4*G*Q*k^2/r^3 * ((6/(k*r)^2-3)*cos(k*r-w*t) ...
-					- (k*r-6/(k*r))*sin(k*r-w*t)) * sin(th)*cos(th);
-				Ett = -G*Q*k^2*(-(-2*k*r + 3/(k*r))*sin(k*r - w*t) ...
-					+ (-k^2*r^2 + 3 - 3/(k^2*r^2))*cos(k*r - w*t))*sin(th)^2/r^3;
+				Err = -4*GG*QQ*kk^2/rr^3 * ((-1 + 3/(kk*rr)^2)*cos(kk*rr-ww*t) ...
+					+ 3*sin(kk*rr-ww*t)/(kk*rr)) * (3*cos(th)^2 - 1);
+				Ert = -4*GG*QQ*kk^2/rr^3 * ((6/(kk*rr)^2-3)*cos(kk*rr-ww*t) ...
+					- (kk*rr-6/(kk*rr))*sin(kk*rr-ww*t)) * sin(th)*cos(th);
+				Ett = -GG*QQ*kk^2*(-(-2*kk*rr + 3/(kk*rr))*sin(kk*rr - ww*t) ...
+					+ (-kk^2*rr^2 + 3 - 3/(kk^2*rr^2))*cos(kk*rr - ww*t))*sin(th)^2/rr^3;
 
 				% Epp = 2*G*Q*k^2*((-1 + 3/(k^2*r^2))*cos(k*r - w*t) + 3*sin(k*r - w*t)/(k*r))*(3*cos(th)^2 - 1)/r^3;
 
@@ -209,7 +209,7 @@ for pp = 1:2
     % Read video data
     % More info: see videoreader.readframe doc page
     % videoData will probably by ~150MB
-    videoIn = VideoReader(videopath);
+    videoIn = VideoReader(videopath{pp});
     vidWidth = videoIn.Width;
     vidHeight = videoIn.Height;
     videoData = struct('cdata',zeros(vidHeight,vidWidth,3,'uint8'),...
@@ -221,7 +221,7 @@ for pp = 1:2
     end
 
     % Open output video file
-    videoOut = VideoWriter(videopath_loop,'Uncompressed AVI');
+    videoOut = VideoWriter(videopath_loop{pp},'Uncompressed AVI');
     videoOut.FrameRate = fps;
     open(videoOut)
 
@@ -229,7 +229,7 @@ for pp = 1:2
     nloops = 20;
     for ll=1:nloops
         % Loop through frames in each loop
-        for kk=1:nsteps
+        for kk=1:nsteps-1
             writeVideo(videoOut,videoData(kk).cdata)
         end
     end
