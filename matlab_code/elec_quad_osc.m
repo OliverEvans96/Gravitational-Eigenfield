@@ -6,6 +6,7 @@
 [scriptdir,~,~] = fileparts(mfilename('fullpath'));
 resultsdir = [scriptdir,'/../results/'];
 imgdir = [resultsdir,'elec_img/'];
+moviedir = [resultsdir,'movies/'];
 
 % Add required packages to matlab path
 % 'genpath' adds subfolders as well
@@ -18,45 +19,46 @@ addpath(genpath([scriptdir,'/../required_packages/']))
 % Create video file to write
 videoname = 'elec_osc.avi';
 videoname_loop = 'elec_osc_loop.avi';
-videopath = [resultsdir,videoname];
-videopath_loop = [resultsdir,videoname_loop];
+videopath = [moviedir,videoname];
+videopath_loop = [moviedir,videoname_loop];
 video = VideoWriter(videopath,'Uncompressed AVI');
-video.FrameRate = 30;
+fps = 30;
+video.FrameRate = fps;
 open(video)
 
 % nxm Cartesian grid
-nn = 1000;
-mm = 1000;
+nn = 1024;
+mm = 1024;
 
 % Cartesian mesh
 xmax = nn/1000;
 xmin = -xmax;
 ymax = mm/1000;
 ymin = -ymax;
-xg = linspace(xmin,xmax,nn);
-yg = linspace(ymin,ymax,mm);
-[xx,yy] = meshgrid(xg,yg);
+x_arr = linspace(xmin,xmax,nn);
+y_arr = linspace(ymin,ymax,mm);
+[x_mesh,y_mesh] = meshgrid(x_arr,y_arr);
 
 % Polar mesh
-[tt,rr] = cart2pol(xx,yy);
+[th_mesh,r_mesh] = cart2pol(x_mesh,y_mesh);
 
 % Parameters
-Q = 1e-3;
-w = 2*pi;
-k = 1e1;
+QQ = 1e-3;
+ww = 2*pi;
+kk = 1e1;
 
 % Create noise canvas for LIC
-M = randn([nn,mm]);
+MM = randn([nn,mm]);
 
 % Allocate time arrays
-% Loop should be over one period & take 2 seconds
-nsteps = 60;
+% Loop should be over one period & take 4 seconds
+nsteps = 4*fps;
 tmax = 1;
-dt = tmax/(nsteps+1);
+dt = tmax/nsteps;
 tstep = 1;
 
 % Loop through time
-for t=0:dt:tmax-1
+for tt=0:dt:tmax
     % Magnitude matrix
     % Dimensions: ii grid, jj grid
     mag_mat = zeros(nn,mm);
@@ -68,18 +70,22 @@ for t=0:dt:tmax-1
     % Print current timestep
     fprintf('tstep = %d/%d\n',tstep,nsteps)
     
+	%%%%%%%%%%%%%%%%%%%%%
+	%% Calculate Field %%
+	%%%%%%%%%%%%%%%%%%%%%
+
     % Loop through space
     for ii=1:nn
         for jj=1:mm
             % Shorthand for r and theta for this grid point
-            r = rr(ii,jj);
-            th = tt(ii,jj);
+            rr = r_mesh(ii,jj);
+            th = th_mesh(ii,jj);
 
             % Spherical components of electric field
-            Er = -2*Q*k^2/r^2 * (cos(k*r - w*t)*(1-3/(k*r)^2)... 
-                - 3/(k*r)*sin(k*r-w*t)) * (3/2*cos(th)^2-.5);
-            Eth = -Q*k^2/r^2 * (sin(k*r - w*t)*(k*r - 6/(k*r)) ...
-                + (3-6/(k*r)^2)*cos(k*r-w*t))*cos(th)*sin(th);
+            Er = -2*QQ*kk^2/rr^2 * (cos(kk*rr - ww*tt)*(1-3/(kk*rr)^2)... 
+                - 3/(kk*rr)*sin(kk*rr-ww*tt)) * (3/2*cos(th)^2-.5);
+            Eth = -QQ*kk^2/rr^2 * (sin(kk*rr - ww*tt)*(kk*rr - 6/(kk*rr)) ...
+                + (3-6/(kk*rr)^2)*cos(kk*rr-ww*tt))*cos(th)*sin(th);
 
             % Combine into one vector
             vec_sph = [Er;Eth];
@@ -111,13 +117,13 @@ for t=0:dt:tmax-1
     options.verb = 1;
     options.dt = 1.5; % time steping
     options.flow_correction = 1;
-    options.isoriented=1;
-    options.niter_lic = 2; % several iterations gives better results
-    options.M0 = M;
-    L = 50; % "Smear length"
+    options.isoriented=0;
+    options.niter_lic = 3; % several iterations gives better results
+    options.M0 = MM;
+    LL = 50; % "Smear length"
 
     % Perform LIC
-    lic_out = perform_lic(vec_mat, L, options);
+    lic_out = perform_lic(vec_mat, LL, options);
 
     % Use constant-brightness colormap
     cmap = cmocean('phase');
@@ -131,6 +137,10 @@ for t=0:dt:tmax-1
         mmin = min(mag_mat(:));
     end
     
+    % Handle out of bounds colors by clipping them
+    mag_mat(mag_mat<mmin) = mmin;
+    mag_mat(mag_mat>mmax) = mmax;
+    
     % Determine colors from magnitude
     colors = floor((mag_mat(:)-mmin)/(mmax-mmin).*size(cmap,1));
     
@@ -142,24 +152,27 @@ for t=0:dt:tmax-1
     img = lic_out.*reshape(cmap(colors,:),[size(lic_out) 3]);
 
     % Plot final colored image
-    imshow(img)
-    drawnow
+    %imshow(img)
+    %drawnow
     
     % Write data image & video
-    imwrite(img,sprintf([resultsdir,'elec_quad_osc_%03d.png'],tstep));
+    imwrite(img,sprintf([imgdir,'elec_quad_osc_%03d.png'],tstep));
     writeVideo(video,img);
     
     % Increment timestep
     tstep = tstep + 1;
     
-    % Only run one timestep
-    break
 end
 
 % Save & close video file
 close(video)
 
+%%%%%%%%%%%%%%%%%%%
+%% Create Videos %%
+%%%%%%%%%%%%%%%%%%%
+
 % Write new video file with several loops
+disp 'Writing data to movie'
 
 % Read data
 % More info: see videoreader.readframe doc page
@@ -169,22 +182,28 @@ vidWidth = videoIn.Width;
 vidHeight = videoIn.Height;
 videoData = struct('cdata',zeros(vidHeight,vidWidth,3,'uint8'),...
     'colormap',[]);
-kk = 1;
-while hasFrame(videoIn)
+
+% Ignore last frame for loop because it's the same as first frame
+for kk = 1:nsteps-1
     videoData(kk).cdata = readFrame(videoIn);
-    kk = kk + 1;
 end
 
 % Open output video file
 videoOut = VideoWriter(videopath_loop,'Uncompressed AVI');
-videoOut.FrameRate = 30;
+videoOut.FrameRate = fps;
 open(videoOut)
 
 % Write to file, looping several times
-nloops = 10;
-for kk=1:nloops
-    writeVideo(videoOut,videoData.cdata(kk))
+nloops = 20;
+for ll=1:nloops
+    % Loop through frames in each loop
+    for kk=1:nsteps
+        writeVideo(videoOut,videoData(kk).cdata)
+    end
 end
 
 % Save and close once again
 close(videoOut)
+
+disp 'Finished!'
+
