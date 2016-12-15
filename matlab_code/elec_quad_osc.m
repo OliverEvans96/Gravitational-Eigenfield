@@ -35,7 +35,7 @@ ymax = mm/1000;
 ymin = -ymax;
 xg = linspace(xmin,xmax,nn);
 yg = linspace(ymin,ymax,mm);
-[yy,xx] = meshgrid(yg,xg);
+[xx,yy] = meshgrid(xg,yg);
 
 % Polar mesh
 [tt,rr] = cart2pol(xx,yy);
