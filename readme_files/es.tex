@@ -1,0 +1,25 @@
+\documentclass{article}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{geometry}
+
+\newcommand\mgin{1in}
+\geometry{
+	left=\mgin,
+	right=\mgin,
+	bottom=\mgin,
+	top=\mgin
+}
+
+% arara: pdflatex
+\begin{document}
+
+%%% Electric Static
+
+\addtocounter{equation}{0}
+\begin{align}
+    E_r &= \frac{6 Q}{r^{4}} \left(1.5 \cos^{2}{\left (\theta \right )} - 0.5\right) \\
+    E_\theta &= \frac{6 Q}{r^{4}} \sin{\left (\theta \right )} \cos{\left (\theta \right )}
+\end{align}
+
+\end{document}

@@ -1,0 +1,27 @@
+\documentclass{article}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{geometry}
+
+\newcommand\mgin{1in}
+\geometry{
+	left=\mgin,
+	right=\mgin,
+	bottom=\mgin,
+	top=\mgin
+}
+
+% arara: pdflatex
+\begin{document}
+
+%%% Gravitational Static
+
+\addtocounter{equation}{4}
+\begin{align}
+    E_{rr} &= - \frac{12 G}{r^{5}} Q \left(3 \cos^{2}{\left (\theta \right )} - 1\right) \\
+    E_{r\theta} &= - \frac{24 G}{r^{5}} Q \sin{\left (\theta \right )} \cos{\left (\theta \right )} \\
+    E_{\theta\theta} &= \frac{3 G}{r^{5}} Q \left(- \sin^{2}{\left (\theta \right )} + 6 \cos^{2}{\left (\theta \right )} - 2\right)
+\end{align}
+
+
+\end{document}

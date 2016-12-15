@@ -1,0 +1,27 @@
+\documentclass{article}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{geometry}
+
+\newcommand\mgin{1in}
+\geometry{
+	left=\mgin,
+	right=\mgin,
+	bottom=\mgin,
+	top=\mgin
+}
+
+% arara: pdflatex
+\begin{document}
+
+%%% Gravitational Oscillating
+
+\pagenumbering{gobble}
+\addtocounter{equation}{6}
+\begin{align}
+    E_{rr} &= - \frac{4 G}{r^{3}} Q k^{2} \left(\left(-1 + \frac{3}{k^{2} r^{2}}\right) \cos{\left (\omega t - k r \right )} - \frac{3}{k r} \sin{\left (\omega t - k r \right )}\right) \left(3 \cos^{2}{\left (\theta \right )} - 1\right) \\
+    E_{r\theta} &= - \frac{4 G}{r^{3}} Q k^{2} \left(\left(-3 + \frac{6}{k^{2} r^{2}}\right) \cos{\left (\omega t - k r \right )} + \left(k r - \frac{6}{k r}\right) \sin{\left (\omega t - k r \right )}\right) \sin{\left (\theta \right )} \cos{\left (\theta \right )} \\
+    E_{\theta\theta} &= - \frac{G Q}{r^{3}} k^{2} \left(- \left(2 k r - \frac{3}{k r}\right) \sin{\left (\omega t - k r \right )} + \left(- k^{2} r^{2} + 3 - \frac{3}{k^{2} r^{2}}\right) \cos{\left (\omega t - k r \right )}\right) \sin^{2}{\left (\theta \right )}
+\end{align}
+
+\end{document}
