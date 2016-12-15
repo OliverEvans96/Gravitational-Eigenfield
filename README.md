@@ -43,8 +43,8 @@ From the paper by Price et. al., we were able to calculate the following for the
 ## References
 Cabral, Brian; Leedom, Leith Casey (August 2–6, 1993). "Imaging Vector Fields Using Line Integral Convolution". Proceedings of the 20th annual conference on Computer graphics and interactive techniques. SIGGRAPH '93. Anaheim, California. pp. 263–270. http://cs.brown.edu/courses/csci2370/2000/1999/cabral.pdf
 
-Peyre, Gabriel (2008). Toolbox Image, MATLAB Central File Exchange. Retrieved December 14, 2016.
+Peyre, Gabriel (2008). Toolbox Image, MATLAB Central File Exchange. Retrieved December 14, 2016. <https://www.mathworks.com/matlabcentral/fileexchange/16201-toolbox-image>
 
-Peyre, Gabriel (2009). Toolbox Diffc, MATLAB Central File Exchange. Retrieved December 14, 2016.
+Peyre, Gabriel (2009). Toolbox Diffc, MATLAB Central File Exchange. Retrieved December 14, 2016. <https://www.mathworks.com/matlabcentral/fileexchange/5103-toolbox-diffc>
 
 Kristen M. Thyng, Chad A. Greene, Robert D. Hetland, Heather M. Zimmerle, and Steven F. DiMarco. True colors of oceanography: Guidelines for effective and accurate colormap selection. Oceanography, September 2016. <http://dx.doi.org/10.5670/oceanog.2016.66>
