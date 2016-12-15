@@ -187,14 +187,16 @@ for t=0:dt:tmax-dt
 
 		% Save data to image & video
 		writeVideo(video{pp},img);
-        imwrite(img,[imgdir,sprintf('grav_%s_%03d.png',labels{pp},tstep)])
+        imwrite(img,[imgdir{pp},sprintf('grav_%s_%03d.png',labels{pp},tstep)])
     end
     
     tstep = tstep + 1;
 end
 
 % Save & close video file
-close(video)
+for pp=1:2
+    close(video{pp})
+end
 
 %%%%%%%%%%%%%%%%%%%
 %% Create Videos %%
