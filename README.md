@@ -45,5 +45,7 @@ Besides the work of Price et. al., we would also like to give credit to Gabriel 
 
 ## References
 Peyre, Gabriel (2008). Toolbox Image, MATLAB Central File Exchange. Retrieved December 14, 2016.
+
 Peyre, Gabriel (2009). Toolbox Diffc, MATLAB Central File Exchange. Retrieved December 14, 2016.
+
 Kristen M. Thyng, Chad A. Greene, Robert D. Hetland, Heather M. Zimmerle, and Steven F. DiMarco. True colors of oceanography: Guidelines for effective and accurate colormap selection. Oceanography, September 2016. <http://dx.doi.org/10.5670/oceanog.2016.66>
