@@ -1,8 +1,8 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Arch Linux) (preloaded format=pdflatex 2016.12.5)  15 DEC 2016 13:53
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Arch Linux) (preloaded format=pdflatex 2016.12.5)  15 DEC 2016 15:26
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**go.tex
+**go.tex -o go.pdf
 (./go.tex
 LaTeX2e <2016/03/31> patch level 3
 Babel <3.9r> and hyphenation patterns for 83 language(s) loaded.
@@ -308,7 +308,7 @@ Here is how much of TeX's memory you used:
  6880 multiletter control sequences out of 15000+600000
  5339 words of font info for 22 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 54i,11n,30p,278b,120s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 54i,11n,30p,288b,120s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/te
 xmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts
 /type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/fonts/type1/public/
