@@ -1,21 +1,45 @@
-%% Calculate eigenfield for gravitostatic tensor for gravitational quadrupole
+%% Calculate gravitoelectric field for static gravitational quadrupole
+
+% Determine directory where script is located 
+% (not necessarily current matlab directory)
+% to determine where to save results
+[scriptdir,~,~] = fileparts(mfilename('fullpath'));
+resultsdir = [scriptdir,'/../results/'];
+
+% Add required packages to matlab path
+% 'genpath' adds subfolders as well
+addpath(genpath([scriptdir,'/../required_packages/']))
+
+% Suffixes for positive and negative eigenvalues
+labels = {'pos','neg'};
+
+% Determine image directory
+imgdir = [resultsdir,sprintf('static_img/')];
 
 % nxm Cartesian grid
-nn = 1000;
-mm = 1000;
-start = 1;
-xg = linspace(-start,start,nn);
-yg = linspace(-start,start,mm);
+nn = 1024;
+mm = 1024;
 
 % Cartesian mesh
-[xx,yy] = meshgrid(xg,yg);
+xmax = nn/1000;
+xmin = -xmax;
+ymax = mm/1000;
+ymin = -ymax;
+x_arr = linspace(xmin,xmax,nn);
+y_arr = linspace(ymin,ymax,mm);
+[x_mesh,y_mesh] = meshgrid(x_arr,y_arr);
 
 % Polar mesh
-[tt,rr] = cart2pol(xx,yy);
+[th_mesh,r_mesh] = cart2pol(x_mesh,y_mesh);
 
 % Parameters
-G = 1;
-Q = 1;
+GG = 1e-2;
+QQ = 1e-2;
+kk = 1e1;
+ww = 2*pi;
+
+% Create noise canvas for LIC
+MM = randn([nn,mm]);
 
 % Eigenvalue matrix
 % Dimensions: ii grid, jj grid, eval # (pos,neg)
@@ -25,127 +49,104 @@ eval_mat = zeros(nn,mm,2);
 % Dimensions: ii grid, jj grid, comp # (x,y), evec # (pos,neg)
 evec_mat = zeros(nn,mm,2,2);
 
-% Gravitoelectric Tensor
-% Err Ert Erp
-% Etr Ett Etp
-% Epr Ept Epp
-
-% Define components
-%Err = -12*G*Q./rr.^5 .* (3*cos(tt).^2 - 1);
-%Ert = -24*G*Q./rr.^5 .* sin(tt)*cos(tt);
-%Ett = 3*G*Q./rr.^5 .* (6*cos(tt).^2 - sin(tt).^2 - 2);
-% Epp = 3*G*Q./rr.^5 .* (5*cos(tt).^2 - 1);
-
 % Loop through x,y grid
 for ii=1:nn
     for jj=1:mm
-        % Shorthand for r and theta for this grid point
-        r1 = rr(ii,jj);
-        t1 = tt(ii,jj);
-        
-        % Potential derivatives for GE tensor
-        Err = -12*G*Q./r1.^5 .* (3*cos(t1).^2 - 1);
-        Ert = -24*G*Q./r1.^5 .* sin(t1)*cos(t1);
-        Ett = 3*G*Q./r1.^5 .* (6*cos(t1).^2 - sin(t1).^2 - 2);
-        
-        % Equivalent 2x2 tensor
-%         GE = [Err(ii,jj), Ert(ii,jj); ...
-%               Ert(ii,jj), Ett(ii,jj)];
-        
-        % Equivalent 2x2 tensor
-        GE = [Err, Ert; ...
-              Ert, Ett];
-        
-        % Calculate eigenvalues
-        [evecs,evals] = eig(GE);
-        
-        % Extract eigenvalues from diagonal matrix
-        evals = diag(evals);
-        
-        % Convert eigenvectors back to Cartesian
-        evecs_cart = zeros([2,2]);
-        
-        % Vector change of coordinates sph -> cart given by
-        % v_cart = (v_r*sin(th)+v_th*cos(th))*x_hat
-        %        + (v_r*cos(th)-v_th*sin(th))*y_hat
-        % where v_r = evecs(1,:) and v_th = evecs(2,:)
-        evecs_cart(1,:) = evecs(1,:)*sin(t1) + evecs(2,:)*cos(t1);
-        evecs_cart(2,:) = evecs(1,:)*cos(t1) - evecs(2,:)*sin(t1);
-        
-        % Save to appropriate matrices
-        eval_mat(ii,jj,:) = evals;
-        % Since direction of eigenvalues is arbitrary, we need to apply
-        % some transformations before plotting to ensure continuity.
-        evec_mat(ii,jj,:,1) = evecs_cart(:,1)...
-            .*sign(evecs_cart(1,1))*sign(xx(ii,jj));
-        evec_mat(ii,jj,:,2) = evecs_cart(:,2)...
-            .*sign(evecs_cart(2,2))*sign(yy(ii,jj));
-        %evecs_cart(:,:)
-        %sign(evecs_cart(1,:))
-        %evecs_cart.*sign(evecs_cart(:,1))
-        %break
+        % Loop through positive/negative evals
+        for pp=1:2
+            % Shorthand for r and th for this grid point
+            rr = r_mesh(ii,jj);
+            th = th_mesh(ii,jj);
+
+            % Potential derivatives for GE tensor
+            Err = -12*GG*QQ./rr.^5 .* (3*cos(th).^2 - 1);
+            Ert = -24*GG*QQ./rr.^5 .* sin(th)*cos(th);
+            Ett = 3*GG*QQ./rr.^5 .* (6*cos(th).^2 - sin(th).^2 - 2);
+            
+            % Equivalent 2x2 tensor
+            GE = [Err, Ert; ...
+                  Ert, Ett];
+
+            % Calculate eigenvalues
+            [evecs,evals] = eig(GE);
+
+            % Extract eigenvalues from diagonal matrix
+            evals = diag(evals);
+
+            % Convert eigenvectors back to Cartesian
+            evecs_cart = zeros([2,2]);
+
+            % Vector change of coordinates sph -> cart given by
+            % v_cart = (v_r*sin(th)+v_th*cos(th))*x_hat
+            %        + (v_r*cos(th)-v_th*sin(th))*y_hat
+            % where v_r = evecs(1,:) and v_th = evecs(2,:)
+            evecs_cart(1,:) = evecs(1,:)*sin(th) + evecs(2,:)*cos(th);
+            evecs_cart(2,:) = evecs(1,:)*cos(th) - evecs(2,:)*sin(th);
+
+            % Save to appropriate matrices
+            eval_mat(ii,jj,:) = evals;
+            % Since direction of eigenvalues is arbitrary, we need to apply
+            % some transformations before plotting to ensure continuity.
+            evec_mat(ii,jj,:,1) = evecs_cart(:,1)...
+                .*sign(evecs_cart(1,1))*sign(x_mesh(ii,jj));
+            evec_mat(ii,jj,:,2) = evecs_cart(:,2)...
+                .*sign(evecs_cart(2,2))*sign(y_mesh(ii,jj));
+        end
     end
-    %break
 end
 
-%% Plot using quiver
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Line Integral Convolution %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% figure(1)
-% clf
-% skip = 5;
-% x_sec = xx(1:skip:end,1:skip:end);
-% y_sec = yy(1:skip:end,1:skip:end);
-% v_sec = vv(1:skip:end,1:skip:end,:);
-% 
-% quiver(x_sec,y_sec,v_sec(:,:,1),v_sec(:,:,2))
-% xlim([-5,5]);
-% ylim([-5,5]);
+% Normalize vector field
+evec_mat = perform_vf_normalization(evec_mat);
 
+% LIC Parameters
+options.bound = 'sym';
+options.histogram = 'linear'; % keep contrast fixed
+options.verb = 1;
+options.dt = 1.5; % time steping
+options.flow_correction = 3;
+options.isoriented=0;
+options.niter_lic = 3; % several iterations gives better results
+options.M0 = MM;
+LL = 50; % "Smear length"
 
-%% LIC
+% Use constant-brightness colormap
+cmap = cmocean('phase');
 
-% Plot tiles
-titles = {'Gravitational Quadrupole Tendex Field: Positive Eigenvalue',...
-    'Gravitational Quadrupole Tendex Field: Negative Eigenvalue'};
-labels = {'pos','neg'};
-
-for kk=1:2
-    figure(kk)
-    clf 
-    % Store first eigenvector
-    vv = evec_mat(:,:,:,kk);
-    ll = eval_mat(:,:,kk);
-
-    % Normalize eigenvector array
-    vv = perform_vf_normalization(vv);
-
-    % Create noise canvas
-    M = randn([nn,mm]);
-
-    % parameters for the LIC
-    options.bound = 'sym';
-    options.histogram = 'linear'; % keep contrast fixed
-    options.verb = 1;
-    options.dt = 1.5; % time steping
-    % size of the features
-    options.flow_correction = 1;
-    %options.isoriented=1;
-    options.niter_lic = 5; % several iterations gives better results
-    options.M0 = M;
-    L = 60; % "Smear length"
-
+for pp = 1:2
     % Perform LIC
-    lic_out = perform_lic(vv, L, options);
+    lic_out = perform_lic(evec_mat(:,:,:,pp), LL, options);
+    
+    % Use log scale for colors
+    eval_mat = log(abs(eval_mat));
 
-    % Color output from eigenvalues
-    cmap = cmocean('phase');
-    ll = log(abs(ll));
-    colors = floor((ll(:)-min(ll(:)))/(max(ll(:))-min(ll(:))).*size(cmap,1));
+    % Determine colors over magnitude range only on the first timestep
+    mmax = max(eval_mat(:));
+    mmin = min(eval_mat(:));
+    
+    % Handle out of bounds colors by clipping them
+    eval_mat(eval_mat<mmin) = mmin;
+    eval_mat(eval_mat>mmax) = mmax;
+    
+    % Determine colors from magnitude
+    colors = floor((eval_mat(:,:,pp) - mmin)...
+        / (mmax-mmin).*size(cmap,1));
+    
+    % Set vectors with the smallest magnitude to the first color
+    % (as opposed to the zeroth color)
     colors(colors==0) = 1;
-    img = lic_out.*reshape(cmap(colors,:),[size(lic_out) 3]);
+    
+    % Colors to column vector
+    colors_col_vec = reshape(colors,numel(colors),1);
+    
+    % Multiply b/w img by colors & reshape to n x m x 3
+    img = lic_out.*reshape(cmap(colors_col_vec,:),[size(lic_out) 3]);
 
-    % Plot final colored image
-    %imshow(img)
-    %title(titles{kk})
-    imwrite(img,sprintf('grav_quad_%s.png',labels{kk}))
+    imwrite(img,[imgdir,sprintf('grav_%s_static.png',labels{pp})])
 end
+
+disp 'Finished!'
+

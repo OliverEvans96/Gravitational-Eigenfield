@@ -1,4 +1,4 @@
-%% Calculate gravitoelectric field for oscillating gravitational dipole
+%% Calculate gravitoelectric field for oscillating gravitational quadrupole
 
 % Determine directory where script is located 
 % (not necessarily current matlab directory)
