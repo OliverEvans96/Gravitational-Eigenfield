@@ -10,9 +10,6 @@ moviedir = [resultsdir,'movies/'];
 
 % Add required packages to matlab path
 % 'genpath' adds subfolders as well
-%addpath(genpath([scriptdir,'/../required_packages/cmocean']))
-%addpath(genpath([scriptdir,'/../required_packages/toolbox_image']))
-%addpath(genpath([scriptdir,'../required_packages/toolbox_diffc']))
 addpath(genpath([scriptdir,'/../required_packages/']))
 
 
@@ -197,7 +194,7 @@ open(videoOut)
 nloops = 20;
 for ll=1:nloops
     % Loop through frames in each loop
-    for kk=1:nsteps
+    for kk=1:nsteps-1
         writeVideo(videoOut,videoData(kk).cdata)
     end
 end
