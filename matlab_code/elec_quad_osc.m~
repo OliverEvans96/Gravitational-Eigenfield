@@ -9,9 +9,10 @@ imgdir = [resultsdir,'elec_img/'];
 
 % Add required packages to matlab path
 % 'genpath' adds subfolders as well
-%addpath(genpath([scriptdir,'/../required_packages/cmocean']))
+addpath(genpath([scriptdir,'/../required_packages/cmocean']))
 %addpath(genpath([scriptdir,'/../required_packages/toolbox_image']))
 %addpath(genpath([scriptdir,'../required_packages/toolbox_diffc']))
+%[scriptdir,'/../required_packages/toolbox_image']
 addpath(genpath([scriptdir,'/../required_packages/']))
 
 

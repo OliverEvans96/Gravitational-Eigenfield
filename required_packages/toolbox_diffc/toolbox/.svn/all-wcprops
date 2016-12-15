@@ -1,0 +1,95 @@
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svnroot/matlabcompanion/!svn/ver/1/toolbox/toolbox_diffc/toolbox
+END
+progressbar.m
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svnroot/matlabcompanion/!svn/ver/1/toolbox/toolbox_diffc/toolbox/progressbar.m
+END
+getoptions.m
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svnroot/matlabcompanion/!svn/ver/1/toolbox/toolbox_diffc/toolbox/getoptions.m
+END
+clamp.m
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svnroot/matlabcompanion/!svn/ver/1/toolbox/toolbox_diffc/toolbox/clamp.m
+END
+crop.m
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svnroot/matlabcompanion/!svn/ver/1/toolbox/toolbox_diffc/toolbox/crop.m
+END
+compute_periodic_poisson.m
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svnroot/matlabcompanion/!svn/ver/1/toolbox/toolbox_diffc/toolbox/compute_periodic_poisson.m
+END
+lena.png
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svnroot/matlabcompanion/!svn/ver/1/toolbox/toolbox_diffc/toolbox/lena.png
+END
+perform_convolution.m
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svnroot/matlabcompanion/!svn/ver/1/toolbox/toolbox_diffc/toolbox/perform_convolution.m
+END
+compute_movie_file.m
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svnroot/matlabcompanion/!svn/ver/1/toolbox/toolbox_diffc/toolbox/compute_movie_file.m
+END
+nb_dims.m
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svnroot/matlabcompanion/!svn/ver/1/toolbox/toolbox_diffc/toolbox/nb_dims.m
+END
+compute_gaussian_filter.m
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svnroot/matlabcompanion/!svn/ver/1/toolbox/toolbox_diffc/toolbox/compute_gaussian_filter.m
+END
+perform_histogram_equalization.m
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svnroot/matlabcompanion/!svn/ver/1/toolbox/toolbox_diffc/toolbox/perform_histogram_equalization.m
+END
+rescale.m
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svnroot/matlabcompanion/!svn/ver/1/toolbox/toolbox_diffc/toolbox/rescale.m
+END
+perform_blurring.m
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svnroot/matlabcompanion/!svn/ver/1/toolbox/toolbox_diffc/toolbox/perform_blurring.m
+END
+load_image.m
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svnroot/matlabcompanion/!svn/ver/1/toolbox/toolbox_diffc/toolbox/load_image.m
+END
+imageplot.m
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svnroot/matlabcompanion/!svn/ver/1/toolbox/toolbox_diffc/toolbox/imageplot.m
+END
