@@ -18,7 +18,7 @@ The particular visualization technique utilized here is Line Integral Convolutio
 The primary feature which this work adds to the work done by Price et. al. is to color the field images using the magnitude of the field in the electric case, and the absolute value of the eigenvalue in the gravitational case.
 
 ## Field equations
-From the paper by Price et. al., we were able to calculate the following for the electric and gravitational fields of the two dipoles.
+From the paper by Price et. al., we were able to calculate the following for the electric and gravitational fields of the two quadrupoles.
 
 ### Electric Quadrupole
 
