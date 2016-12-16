@@ -52,7 +52,9 @@ From the paper by Price et. al., we were able to calculate the following for the
 #### Static
 
 ##### Positive Eigenvalue
+<center>
 <img src="results/static_img/grav_pos_static.png" height=500px />
+</center>
 
 ##### Negative Eigenvalue
 <img src="results/static_img/grav_neg_static.png" height=500px />
