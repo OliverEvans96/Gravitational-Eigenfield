@@ -47,8 +47,10 @@ From the paper by Price et. al., we were able to calculate the following for the
 <img src="results/static_img/elec_static.png" height=500px />
 
 #### Oscillating
-<img src="results/static_img/elec_quad_osc_001.png" height=500px />
+<img src="results/elec_img/elec_quad_osc_001.png" height=500px />
+
 [Youtube](https://www.youtube.com/watch?v=xRnNFwoTh7Q) (Streaming - low quality)
+
 [Google Drive](https://drive.google.com/open?id=0BwrkNDlHuDWKcXVlMkVqT0hHWlU) (Download - high quality)
 
 ### Gravitational Quadrupole
@@ -64,16 +66,18 @@ From the paper by Price et. al., we were able to calculate the following for the
 #### Oscillating
 
 ##### Positive Eigenvalue
-<img src="results/grav_neg_img/grav_pos_001.png" height=500px />
+<img src="results/grav_pos_img/grav_pos_001.png" height=500px />
+
 [Youtube](https://www.youtube.com/watch?v=YRXS0L8XMn0&feature=youtu.be) (Streaming - low quality)
+
 [Google Drive](https://drive.google.com/open?id=0BwrkNDlHuDWKdlhDaWlPd0JKUjg) (Download - high quality)
 
 
 ##### Negative Eigenvalue
-<a href="https://www.youtube.com/watch?v=BGd5IJogzog&feature=youtu.be" target="_blank">
 <img src="results/grav_neg_img/grav_neg_001.png" height=500px />
-</a>
+
 [Youtube](https://www.youtube.com/watch?v=BGd5IJogzog&feature=youtu.be) (Streaming - low quality)
+
 [Google Drive](https://drive.google.com/open?id=0BwrkNDlHuDWKd2diTnZvLWY3RW8) (Download - high quality)
 
 ## References
