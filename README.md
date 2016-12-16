@@ -47,7 +47,9 @@ From the paper by Price et. al., we were able to calculate the following for the
 <img src="results/static_img/elec_static.png" height=500px />
 
 #### Oscillating
+<a href="results/movies/elec_osc.mp4">
 <img src="results/elec_img/elec_quad_osc_001.png" height=500px />
+</a>
 
 [Youtube](https://www.youtube.com/watch?v=xRnNFwoTh7Q) (Streaming - low quality)
 
