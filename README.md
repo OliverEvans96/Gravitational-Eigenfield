@@ -25,6 +25,7 @@ From the paper by Price et. al., we were able to calculate the following for the
 #### Static
 
 <img src="readme_files/es.png" height=100px />
+<img src="results/static_img/elec_static.png" height=500px />
 
 #### Oscillating
 
@@ -33,12 +34,35 @@ From the paper by Price et. al., we were able to calculate the following for the
 ### Gravitational Quadrupole
 
 #### Static
-
 <img src="readme_files/gs.png" height=150px />
 
 #### Oscillating
-
 <img src="readme_files/go.png" height=150px />
+
+
+## Results
+
+### Electric Quadrupole
+
+#### Static
+<img src="results/static_img/elec_static.png" height=500px />
+#### Oscillating
+
+### Gravitational Quadrupole
+
+#### Static
+
+##### Positive Eigenvalue
+<img src="results/static_img/grav_pos_static.png" height=500px />
+
+##### Negative Eigenvalue
+<img src="results/static_img/grav_neg_static_static.png" height=500px />
+
+#### Oscillating
+
+##### Positive Eigenvalue
+
+##### Negative Eigenvalue
 
 ## References
 Cabral, Brian; Leedom, Leith Casey (August 2–6, 1993). "Imaging Vector Fields Using Line Integral Convolution". Proceedings of the 20th annual conference on Computer graphics and interactive techniques. SIGGRAPH '93. Anaheim, California. pp. 263–270. http://cs.brown.edu/courses/csci2370/2000/1999/cabral.pdf
