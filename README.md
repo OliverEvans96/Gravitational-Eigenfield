@@ -68,7 +68,9 @@ From the paper by Price et. al., we were able to calculate the following for the
 #### Oscillating
 
 ##### Positive Eigenvalue
+<a href="results/movies/grav_pos_osc.mp4">
 <img src="results/grav_pos_img/grav_pos_001.png" height=500px />
+</a>
 
 [Youtube](https://www.youtube.com/watch?v=YRXS0L8XMn0&feature=youtu.be) (Streaming - low quality)
 
@@ -76,7 +78,9 @@ From the paper by Price et. al., we were able to calculate the following for the
 
 
 ##### Negative Eigenvalue
+<a href="results/movies/grav_neg_osc.mp4">
 <img src="results/grav_neg_img/grav_neg_001.png" height=500px />
+</a>
 
 [Youtube](https://www.youtube.com/watch?v=BGd5IJogzog&feature=youtu.be) (Streaming - low quality)
 
