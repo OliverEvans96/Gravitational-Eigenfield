@@ -94,7 +94,7 @@ Peyre, Gabriel (2008). Toolbox Image, MATLAB Central File Exchange. Retrieved De
 Peyre, Gabriel (2009). Toolbox Diffc, MATLAB Central File Exchange. Retrieved December 14, 2016. <https://www.mathworks.com/matlabcentral/fileexchange/5103-toolbox-diffc>
 
 Price, Richard H. (Texas U., Brownsville), Belcher, John W. (MIT, Cambridge, Dept. Phys.), Nichols, David A. (Caltech). 
-Comparison of electromagnetic and gravitational radiation: What we can learn about each from the other
+Comparison of electromagnetic and gravitational radiation: What we can learn about each from the other.
 Dec 2012. 22 pp.
 Published in Am.J.Phys. 81 (2013) 575 <https://arxiv.org/abs/1212.4730>
 
