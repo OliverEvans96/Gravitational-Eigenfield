@@ -24,19 +24,19 @@ From the paper by Price et. al., we were able to calculate the following for the
 
 #### Static
 
-<img src="readme_files/es.png" height=100px />
+<img src="readme_files/es.png" height=100px align="right"/>
 
 #### Oscillating
 
-<img src="readme_files/eo.png" height=100px />
+<img src="readme_files/eo.png" height=100px align="right"/>
 
 ### Gravitational Quadrupole
 
 #### Static
-<img src="readme_files/gs.png" height=150px />
+<img src="readme_files/gs.png" height=150px align="right"/>
 
 #### Oscillating
-<img src="readme_files/go.png" height=150px />
+<img src="readme_files/go.png" height=150px align="right"/>
 
 
 ## Results
@@ -44,7 +44,7 @@ From the paper by Price et. al., we were able to calculate the following for the
 ### Electric Quadrupole
 
 #### Static
-<img src="results/static_img/elec_static.png" height=500px />
+<img src="results/static_img/elec_static.png" height=500px align="middle"/>
 #### Oscillating
 
 ### Gravitational Quadrupole
@@ -52,10 +52,10 @@ From the paper by Price et. al., we were able to calculate the following for the
 #### Static
 
 ##### Positive Eigenvalue
-<img src="results/static_img/grav_pos_static.png" height=500px />
+<img src="results/static_img/grav_pos_static.png" height=500px align="middle"/>
 
 ##### Negative Eigenvalue
-<img src="results/static_img/grav_neg_static.png" height=500px />
+<img src="results/static_img/grav_neg_static.png" height=500px align="middle"/>
 
 #### Oscillating
 
