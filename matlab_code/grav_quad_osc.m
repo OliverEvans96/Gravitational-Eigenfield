@@ -221,7 +221,7 @@ for pp = 1:2
     end
 
     % Open output video file
-    videoOut = VideoWriter(videopath_loop{pp},'Uncompressed AVI');
+    videoOut = VideoWriter(videopath_loop{pp});
     videoOut.FrameRate = fps;
     open(videoOut)
 
