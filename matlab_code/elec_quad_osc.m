@@ -186,7 +186,7 @@ for kk = 1:nsteps-1
 end
 
 % Open output video file
-videoOut = VideoWriter(videopath_loop,'Uncompressed AVI');
+videoOut = VideoWriter(videopath_loop);
 videoOut.FrameRate = fps;
 open(videoOut)
 
