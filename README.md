@@ -93,8 +93,9 @@ Peyre, Gabriel (2008). Toolbox Image, MATLAB Central File Exchange. Retrieved De
 
 Peyre, Gabriel (2009). Toolbox Diffc, MATLAB Central File Exchange. Retrieved December 14, 2016. <https://www.mathworks.com/matlabcentral/fileexchange/5103-toolbox-diffc>
 
+Price, Richard H. (Texas U., Brownsville), Belcher, John W. (MIT, Cambridge, Dept. Phys.), Nichols, David A. (Caltech). 
 Comparison of electromagnetic and gravitational radiation: What we can learn about each from the other
-Richard H. Price (Texas U., Brownsville), John W. Belcher (MIT, Cambridge, Dept. Phys.), David A. Nichols (Caltech). Dec 2012. 22 pp.
+Dec 2012. 22 pp.
 Published in Am.J.Phys. 81 (2013) 575 <https://arxiv.org/abs/1212.4730>
 
 Kristen M. Thyng, Chad A. Greene, Robert D. Hetland, Heather M. Zimmerle, and Steven F. DiMarco. True colors of oceanography: Guidelines for effective and accurate colormap selection. Oceanography, September 2016. <http://dx.doi.org/10.5670/oceanog.2016.66>
