@@ -24,27 +24,19 @@ From the paper by Price et. al., we were able to calculate the following for the
 
 #### Static
 
-<div style="text-align:right">
 <img src="readme_files/es.png" height=100px />
-</div>
 
 #### Oscillating
 
-<div style="text-align:right">
 <img src="readme_files/eo.png" height=100px />
-</div>
 
 ### Gravitational Quadrupole
 
 #### Static
-<div style="text-align:right">
 <img src="readme_files/gs.png" height=150px />
-</div>
 
 #### Oscillating
-<div style="text-align:right">
 <img src="readme_files/go.png" height=150px />
-</div>
 
 
 ## Results
