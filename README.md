@@ -25,7 +25,6 @@ From the paper by Price et. al., we were able to calculate the following for the
 #### Static
 
 <img src="readme_files/es.png" height=100px />
-<img src="results/static_img/elec_static.png" height=500px />
 
 #### Oscillating
 
@@ -56,7 +55,7 @@ From the paper by Price et. al., we were able to calculate the following for the
 <img src="results/static_img/grav_pos_static.png" height=500px />
 
 ##### Negative Eigenvalue
-<img src="results/static_img/grav_neg_static_static.png" height=500px />
+<img src="results/static_img/grav_neg_static.png" height=500px />
 
 #### Oscillating
 
